@@ -1,0 +1,49 @@
+Assumpte: Presentació de TechCare – Empresa de Software
+
+Benvolgut Joan,
+  
+Ens complau presentar-vos TechCare, una empresa dedicada al desenvolupament de software d’alta qualitat i a la implementació de solucions tecnològiques innovadores. El nostre objectiu és entendre les necessitats específiques dels nostres clients i treballar conjuntament per assolir resultats excel·lents i eficients.
+
+A TechCare, creiem fermament en la metodologia Agile, concretament en el framework Scrum, que utilitzem per garantir la màxima adaptabilitat i transparència en cada projecte. Aquesta metodologia ens permet mantenir una comunicació fluida i constant amb els nostres clients, adaptant-nos a les necessitats canviants i assegurant que cada etapa del desenvolupament s'ajusti als objectius acordats.
+Per gestionar Scrum, utilitzem la plataforma Jira, que ens permet organitzar i gestionar totes les fases i tasques del projecte. A través de Jira, definim els nostres sprints i els cicles de treball, mantenint així una visibilitat constant sobre l’estat i el progrés de cada etapa. A més, Jira facilita el seguiment de cada tasca i la priorització de requisits, així com l’adaptació immediata en funció de les necessitats que puguin sorgir.
+També fem servir la plataforma GitHub per a la gestió del codi font i el control de versions. GitHub ens permet treballar de manera col·laborativa, mantenint un registre detallat de cada canvi i revisió que es fa al projecte. Aquesta plataforma ens ajuda a garantir la qualitat i la coherència del codi.
+
+A TechCare, cada membre de l’equip té un rol específic que contribueix a l’èxit del projecte i garanteix el compliment de la metodologia Scrum. Aquests són els rols i les seves funcions:
+  Product Owner:
+  Lluc Fisas
+  És la persona responsable de definir els requisits i les funcionalitats del producte, assegurant que l’equip entengui i tingui clares les prioritats i objectius del projecte. El Product Owner també manté una comunicació constant amb el client per assegurar que les necessitats estiguin alineades amb el desenvolupament.
+  
+  Scrum Master:
+  Lucía Revaliente
+  El Scrum Master és qui facilita les reunions i vetlla per la correcta aplicació de la metodologia Scrum, garantint que l’equip treballi de manera òptima i eliminant qualsevol impediment que pugui sorgir. La seva funció és també mantenir l’equip enfocat en els objectius del sprint i coordinar-se amb el Product Owner per a una bona gestió de les prioritats.
+  
+  Scrum Team:
+  Guillem Balmanya, David Vidal i Aránzazu Miguélez.
+  L’equip de desenvolupament o Scrum Team és el conjunt de professionals dedicats al desenvolupament i implementació de les funcionalitats acordades. Aquest equip interdisciplinari treballa en el desenvolupament del producte, adaptant-se a les necessitats definides per cada sprint.
+
+En aquesta fase inicial del projecte, ens comprometem a abordar les següents qüestions clau, que establiran la base per a un desenvolupament sòlid i alineat amb les vostres necessitats:
+  Identificació de requisits no funcionals (Pregunta 1) – Això ens ajudarà a establir una base sòlida per als aspectes tècnics i operatius que definiran el sistema.
+  Definició de requisits funcionals amb històries d’usuari (Pregunta 2) i
+  Gestió de conflictes de requisits (Pregunta 3a) – Ens servirà per assegurar-nos que els casos d'ús responen als objectius reals dels usuaris. També podrem gestionar les funcionalitats en conflicte.
+  Identificació de requisits dependents (Pregunta 3b) – Justificarem aquestes relacions per garantir una estructura coherent entre funcionalitats.
+  Creació de casos d’ús (Pregunta 4) – Elaborarem una llista de casos d'ús a nivell d'usuari, indicant el nom de cada cas i l'actor iniciador, seguint les directrius de nomenclatura establertes.
+  Triar casos d'ús i descriure DCUS (Pregunta 5) – Ens permetrà definir i documentar detalls específics dels casos d'ús seleccionats, incloent-hi actors principals i de suport, àmbit, nivells i possibles escenaris. Aquesta documentació és fonamental per a casos d'ús clau com el "registre mèdic", que implicarà des del formulari inicial omplert per la persona gran fins a l'alta en el sistema amb les alertes de monitoratge corresponents.
+  Diagrames d'activitat per casos d'ús (Pregunta 6) – Aprofundirem en l'anàlisi de fluxos específics per a almenys dos casos d'ús clau, incloent-hi el "registre mèdic". Això ens ajudarà a entendre el flux complet de cada cas d'ús amb detall, detectant possibles punts crítics i optimitzant el procés per fer-lo més efectiu.
+  Diagrames de seqüència per casos d'ús (Pregunta 7) – Seleccionarem casos d'ús que requereixin una representació detallada de la seqüència d'interaccions entre actors i el sistema. Això inclourà com a mínim dos diagrames de seqüència, un dels quals serà del "registre mèdic". Aquest pas facilitarà la comprensió de l’ordre de les accions i de les comunicacions necessàries per a l'èxit dels casos d'ús seleccionats.
+  Wireframes i visualització de l’aplicació (Pregunta 10) – Desenvoluparem una proposta visual de l’aplicació, incloent-hi wireframes de les pantalles més rellevants per mostrar-vos la demo inicial.
+
+En la segona i última fase del projecte, ens comprometem a abordar les següents qüestions clau, que establiranl’entrega final i que esperem que sigui acord a les vostres necessitats:
+  Diagrama de classes per a xarxes socials i rols (Pregunta 8) – Aquesta tasca ens permetrà definir el model del domini per SeniorLife, incloent-hi la informació necessària per representar les xarxes socials i els rols (Família, Amics, Personal sanitari). Això ens ajudarà a estructurar la informació clau de cada usuari, les seves xarxes socials i dades detallades dels contactes segons el seu rol. També inclourà identificadors únics, restriccions d’integritat i format de dates específic, tal com han suggerit Alejandra i Carla, i permetrà calcular o emmagatzemar el nombre total de persones per xarxa social.
+  Diagrama de classes per constants vitals i alertes (Pregunta 9) – Elaborarem un diagrama de classes per modelar el monitoratge de constants vitals mitjançant dispositius IoT, incloent els llindars i alertes. A més, especificarem les regles de cada tipus d’alerta i les seves característiques particulars (nivell de risc, contacte, instruccions), per garantir que el model s’ajusta a la monitorització de la salut de les persones grans de manera segura i detallada. En cas necessari, reutilitzarem classes del model creat a la pregunta anterior, afegint els ajustaments requerits per al domini de constants vitals.
+  Creació de wireframes de l'aplicació (Pregunta 10) – A través de wireframes creatius i funcionals, visualitzarem les pantalles i formularis més rellevants de SeniorLife. Aquest procés ens ajudarà a simular el flux complet del sistema des de la perspectiva de l’usuari, oferint una guia clara per al desenvolupament d’interfícies intuïtives i visuals, encara que inicialment no tingui backend o funcionalitat completa.
+  Desenvolupament d’una versió inicial del producte (Pregunta 11 ): La nostra prioritat serà entregar una primera versió del producte amb una funcionalitat completa. Aquesta versió se centrarà a proporcionar un codi de qualitat, seguint les millors pràctiques d’Enginyeria de Software.
+
+Aquest compromís ens permet avançar amb una visió sòlida, posant les bases per construir un projecte de qualitat. A TechCare, estem a la vostra disposició per adaptar-nos a les vostres necessitats i treballar junts per assolir els vostres objectius.
+
+Finalment, adjuntem també els links d’accés al Jira i al GitHub per si el convit no ha funcionat correctament.
+  Jira: https://llukiaraos.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog?atlOrigin=eyJpIjoiNjU1MDAxZWMwNmYwNDFmZGI1N2YwNTdkMWI4N2MzNDIiLCJwIjoiaiJ9
+  GitHub: https://github.com/luciarevaliente/Projecte_EProgramari
+
+Gràcies per la vostra atenció, i esperem col·laborar amb vosaltres!
+Atentament,
+L’equip de TechCare. ‎
