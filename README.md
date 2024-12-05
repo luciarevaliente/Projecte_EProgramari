@@ -1,13 +1,12 @@
-Projecte SeniorLife
+# Projecte SeniorLife
 
-Descripció:  
+## Descripció:  
 El projecte SeniorLife té com a objectiu dissenyar i desenvolupar una aplicació per a persones grans, amb un enfocament especial en la seva salut i benestar. A través de la plataforma, es busca oferir un sistema de monitoratge de constants vitals, la gestió de xarxes socials personalitzades, el seguiment mèdic i alertes de salut en temps real.
 
 Aquest repositori conté tota la documentació relacionada amb el procés de desenvolupament del projecte, incloent-hi els requisits funcionals i no funcionals, els casos d'ús, els diagrames i altres materials essencials per al seu desenvolupament.
 
 
 ## Contingut del repositori
-
 A continuació es detallen els documents inclòs en aquest repositori:
 
 - Enunciats del projecte: PDF amb l'enunciat complet del projecte, amb les indicacions i requeriments generals per al seu desenvolupament.
@@ -26,18 +25,14 @@ A continuació es detallen els documents inclòs en aquest repositori:
 
 
 ## Stakeholders implicats
-
 Els següents stakeholders han estat involucrats en la definició dels requisits del sistema:
 
 - Carla Qurban (Emprenedora i Directora Executiva)
 - Alejandra Popa (Enginyera en Informàtica i CTO)
 - Pascual Peña (Metge i amic de Carla)
-- **Eduardo Gasch (CFO i cosí de Carla)
+- Eduardo Gasch (CFO i cosí de Carla)
 - Antonio Garcia (Amic de Carla i familiar d’un usuari potencial)
 
 
-
-
 ## Contacte
-
 Per a qualsevol dubte o pregunta, pots contactar amb els responsables del projecte a través de les adreces de correu electrònic proporcionades en la documentació interna.
