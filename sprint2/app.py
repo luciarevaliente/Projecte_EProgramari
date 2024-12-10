@@ -2,18 +2,16 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.secret_key = 'secret_key'  # Clau secreta per a Flash messages
+app.secret_key = 'secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# Model d'usuari
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)
-
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,7 +27,6 @@ class MedicalRecord(db.Model):
     treatment = db.Column(db.Text, nullable=False)
     doctor_notes = db.Column(db.Text, nullable=True)
 
-# Crear la base de dades
 with app.app_context():
     db.create_all()
 
@@ -59,13 +56,11 @@ def register():
         username = request.form['username']
         password = request.form['password']
 
-        # Comprova si l'usuari ja existeix
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             flash('Aquest usuari ja existeix. Prova amb un altre nom.', 'error')
             return redirect(url_for('register'))
 
-        # Afegeix l'usuari nou a la base de dades
         new_user = User(username=username, password=password)
         db.session.add(new_user)
         db.session.commit()
@@ -79,7 +74,7 @@ def register():
 @app.route('/appointments', methods=['GET', 'POST'])
 def appointments():
     if request.method == 'POST':
-        user_id = request.form['user_id']  # Suposant que l'usuari està identificat
+        user_id = request.form['user_id']
         date = request.form['date']
         time = request.form['time']
         description = request.form['description']
@@ -91,7 +86,6 @@ def appointments():
         flash('Cita mèdica registrada correctament!', 'success')
         return redirect(url_for('appointments'))
 
-    # Llista totes les cites
     all_appointments = Appointment.query.all()
     return render_template('appointments.html', appointments=all_appointments)
 
@@ -111,10 +105,8 @@ def medical_records():
         flash('Registre mèdic creat correctament!', 'success')
         return redirect(url_for('medical_records'))
 
-    # Llista tots els registres mèdics
     all_records = MedicalRecord.query.all()
     return render_template('medical_records.html', records=all_records)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
