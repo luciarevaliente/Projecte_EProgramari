@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cites Mèdiques</title>
+</head>
+<body>
+    <h2>Registra una cita mèdica</h2>
+    <form method="POST">
+        <label for="user_id">ID Usuari:</label>
+        <input type="text" id="user_id" name="user_id" required>
+
+        <label for="date">Data:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Hora:</label>
+        <input type="time" id="time" name="time" required>
+
+        <label for="description">Descripció:</label>
+        <textarea id="description" name="description"></textarea>
+
+        <button type="submit">Guardar cita</button>
+    </form>
+    <h2>Llista de cites</h2>
+    <ul>
+        {% for appointment in appointments %}
+        <li>{{ appointment.date }} {{ appointment.time }} - {{ appointment.description }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
