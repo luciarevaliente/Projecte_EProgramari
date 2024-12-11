@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registres Mèdics</title>
+</head>
+<body>
+    <h2>Crea un registre mèdic</h2>
+    <form method="POST">
+        <label for="user_id">Username:</label>
+        <input type="text" id="user_id" name="user_id" required>
+
+        <label for="llista_alergies">Alèrgies:</label>
+        <textarea id="llista_alergies" name="llista_alergies" required></textarea>
+
+        <label for="grup_sanguini">Grup sanguini:</label>
+        <textarea id="grup_sanguini" name="grup_sanguini" required></textarea>
+
+        <label for="condicions_especials">Condicions especials:</label>
+        <textarea id="condicions_especials" name="condicions_especials"></textarea>
+
+        <label for="medicacio_actual">Medicació actual:</label>
+        <textarea id="medicacio_actual" name="medicacio_actual"></textarea>
+
+        <button type="submit">Continuar</button>
+    </form>
+    <button onclick="window.history.back()">Tornar enrere</button>
+</body>
+</html>

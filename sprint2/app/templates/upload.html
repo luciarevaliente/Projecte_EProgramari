@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrega document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>SeniorLife</h1>
+        <p>Importa el fitxer del teu historial mèdic:</p>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="upload-box">
+                <img src="{{ url_for('static', filename='resources/logo.png') }}">
+                <p>Escull un fitxer per pujar</p>
+                <input type="file" name="file" accept=".pdf,.doc,.docx,.txt" required>
+            </div>
+            <button type="submit">Continuar</button>
+        </form>
+        <button class="secondary-button" onclick="window.history.back()">Tornar enrere</button>
+    </div>
+</body>
+</html>
