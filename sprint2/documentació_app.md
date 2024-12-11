@@ -19,9 +19,7 @@ PER ACABAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ### **3. CREACIÓ BASE DE DADES**
 
-La base de dades s'ha creat utilitzant SQLAlchemy, que permet definir l'estructura en Python mitjançant classes. Aquesta base de dades és de tipus relacional, ja que organitza la informació en taules amb relacions definides entre elles. Per exemple, la taula `User` representa els usuaris registrats, la taula `Appointment` gestiona les cites mèdiques i la taula `MedicalRecord` conté els registres mèdics associats. Les relacions entre aquestes taules es defineixen mitjançant claus foranes. Així, `Appointment` i `MedicalRecord` estan vinculades a `User` a través del camp `user_id`, assegurant que cada cita o registre mèdic estigui associat a un usuari existent.
-
-Les dades es garanteixen coherents gràcies a les restriccions com `NOT NULL`, que assegura que els camps necessaris no quedin buits, i `UNIQUE`, que evita duplicats en camps com el correu electrònic. Aquest tipus de base de dades és ideal per assegurar la integritat i consistència de la informació en aplicacions amb relacions complexes entre entitats, com usuaris, cites i registres mèdics.
+La base de dades s'ha creat amb SQLAlchemy, un ORM que permet definir l'estructura utilitzant classes Python i gestionar les dades sense escriure SQL manual. És una base de dades relacional, on les taules (User, Appointment, MedicalRecord) estan vinculades mitjançant claus foranes per mantenir la integritat referencial. SQLAlchemy aplica restriccions com NOT NULL i UNIQUE per assegurar la coherència i consistència de les dades, oferint una gestió senzilla i escalable per a aplicacions complexes.
 
 
    ### **Definició de les taules**
