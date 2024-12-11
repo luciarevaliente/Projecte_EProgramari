@@ -1,32 +1,41 @@
 
 
-
+## **DOCUMENTACIÓ DE L'APLICACIÓ**
 
 ### **DESENVOLUPAMENT DE L'APLICACIÓ**
+
+L'aplicació ha estat desenvolupada utilitzant Flask, un microframework que ofereix una arquitectura flexible i eficient per a aplicacions web. Per a la gestió de dades, s'ha integrat SQLAlchemy, que proporciona una interfície d'ORM (Object-Relational Mapping) per interactuar amb la base de dades de manera senzilla. L'aplicació inclou funcionalitats bàsiques com el registre i autenticació d'usuaris, la gestió de cites mèdiques i la visualització de registres mèdics. Aquestes funcionalitats s'han implementat amb una separació lògica de responsabilitats, apropant-se al patró MVC, on els models encapsulen les dades, les vistes gestionen la interfície d'usuari i els controladors connecten els dos elements.
+
+PER ACABAR---------------------------------
 ---
+
 ### **ESTILS DE L'APLICACIÓ**
+
+Els estils visuals es defineixen a través del fitxer `style.css`. S'han dissenyat elements visuals moderns, mantenint un equilibri entre simplicitat i funcionalitat. Els formularis són clars i fàcils d'utilitzar, els botons tenen un estil coherent per guiar l'usuari i els esquemes de colors s'han triat per assegurar una bona llegibilitat. L'aplicació és responsive, adaptant-se a diferents dispositius per millorar l'experiència d'usuari tant en pantalles petites com grans.
+
+PER ACABAR---------------------------------
 ---
+
 ### **CREACIÓ BASE DE DADES**
 
-La base de dades s'ha creat utilitzant **SQLAlchemy**, un ORM (Object-Relational Mapping) que permet definir l'estructura de la base de dades utilitzant classes Python. Aquesta base de dades és **relacional**, ja que organitza la informació en taules amb relacions definides entre elles. A continuació s'explica per què és relacional, així com les taules creades i les seves característiques.
+La base de dades s'ha creat utilitzant SQLAlchemy, que permet definir l'estructura en Python mitjançant classes. Aquesta base de dades és de tipus relacional, ja que organitza la informació en taules amb relacions definides entre elles. Per exemple, la taula `User` representa els usuaris registrats, la taula `Appointment` gestiona les cites mèdiques i la taula `MedicalRecord` conté els registres mèdics associats. Les relacions entre aquestes taules es defineixen mitjançant claus foranes. Així, `Appointment` i `MedicalRecord` estan vinculades a `User` a través del camp `user_id`, assegurant que cada cita o registre mèdic estigui associat a un usuari existent.
 
-1. **Estructura basada en taules**: La informació es guarda en taules (`User`, `Appointment`, `MedicalRecord`) on cada fila representa un registre únic.
-2. **Relacions entre taules**: Hi ha **claus foranes** que estableixen vincles entre taules, com per exemple:
-   - La taula `Appointment` té una columna `user_id` que fa referència a l'usuari propietari de la cita.
-   - La taula `MedicalRecord` també utilitza `user_id` per relacionar-se amb la taula `User`.
-3. **Integritat referencial**: Les relacions garanteixen que cada cita o registre mèdic estigui associat a un usuari existent. Això evita registres "orfes" a la base de dades.
+Les dades es garanteixen coherents gràcies a les restriccions com `NOT NULL`, que assegura que els camps necessaris no quedin buits, i `UNIQUE`, que evita duplicats en camps com el correu electrònic. Aquest tipus de base de dades és ideal per assegurar la integritat i consistència de la informació en aplicacions amb relacions complexes entre entitats, com usuaris, cites i registres mèdics.
 
-Aquest tipus de base de dades és adequat perquè l'aplicació tracta dades estructurades amb relacions clares entre entitats (usuaris, cites i registres mèdics). Els sistemes de bases de dades relacionals són ideals per a aplicacions on es necessita assegurar la coherència i integritat de les dades.
+---
 
-### **Definició de les taules**
-La taula **User** representa els usuaris registrats a l'aplicació. Està relacionada amb altres taules mitjançant una relació un-a-molts amb la taula **Appointment**, ja que un usuari pot tenir moltes cites, i amb la taula **MedicalRecord**, ja que un usuari pot tenir molts registres mèdics. Aquesta taula inclou diverses restriccions, com que el camp *email* ha de ser únic per evitar duplicats i que el camp *age* només admet valors entre 18 i 120 anys per assegurar que els registres siguin vàlids.
+### **DEFINICIÓ DE LES TAULES**
 
-La taula **Appointment** s'utilitza per gestionar les cites mèdiques. Està vinculada a la taula **User** mitjançant el camp *user_id*, que identifica l'usuari que té la cita. Aquesta taula aplica restriccions perquè *user_id*, *date* i *time* siguin únics, evitant així duplicats. A més, la clau forana *user_id* garanteix que només es poden registrar cites per a usuaris que existeixen a la taula **User**.
+La taula `User` representa els usuaris de l'aplicació i inclou camps com el nom d'usuari, el correu electrònic, la contrasenya i l'edat. La seva estructura garanteix que el correu sigui únic per evitar conflictes, i l'edat només permet valors entre 18 i 120 anys, assegurant registres vàlids. Aquesta taula està relacionada amb altres taules com `Appointment` i `MedicalRecord`, ja que un usuari pot tenir múltiples cites i registres mèdics.
 
-La taula **MedicalRecord** s'encarrega de gestionar els registres mèdics associats als usuaris. Està relacionada amb la taula **User** mitjançant el camp *user_id*, que identifica l'usuari associat al registre mèdic. Les restriccions inclouen que els camps *user_id*, *diagnosis* i *treatment* han de ser únics per evitar duplicats i assegurar la consistència dels registres.
+La taula `Appointment` s'encarrega de gestionar les cites mèdiques. Cada cita està vinculada a un usuari mitjançant el camp `user_id`, que és una clau forana que assegura la integritat referencial. Per evitar conflictes, es garanteix que una combinació de `user_id`, data i hora sigui única. Això assegura que un usuari no pugui tenir dues cites a la mateixa hora.
 
+La taula `MedicalRecord` conté els registres mèdics associats als usuaris. Aquesta taula també està vinculada a `User` mitjançant `user_id`. Per garantir la consistència, els camps `user_id`, diagnòstic i tractament són únics en combinació. Això evita que es registrin duplicats per al mateix usuari amb el mateix diagnòstic i tractament.
 
-### **Com s'ha creat la base de dades?**
+---
+
+### **COM S'HA CREAT LA BASE DE DADES?**
+
 1. **Configuració inicial amb SQLAlchemy**:
    ```python
    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -44,7 +53,8 @@ La taula **MedicalRecord** s'encarrega de gestionar els registres mèdics associ
 
 ---
 
-### **Avantatges d'una base de dades relacional per aquest projecte**
+### **AVANTATGE D'UNA BDR PER AQUEST PROJECTE**
+
 1. **Integritat de les dades**: L'ús de claus foranes i restriccions com `NOT NULL` i `UNIQUE` asseguren dades consistents.
 2. **Fàcil consulta amb SQL**: És senzill obtenir dades mitjançant consultes SQL, per exemple:
    - Totes les cites d'un usuari: `SELECT * FROM appointment WHERE user_id = ?`
@@ -53,45 +63,12 @@ La taula **MedicalRecord** s'encarrega de gestionar els registres mèdics associ
 4. **Integració amb SQLAlchemy**: L'ORM facilita la manipulació de dades en Python sense haver d'escriure SQL manualment.
 
 ---
-### **Patrons utilitzats al projecte**
 
-En el projecte, s'han aplicat alguns patrons de disseny implícits o estructures que segueixen principis relacionats amb patrons populars. A continuació, analitzem si s'han utilitzat patrons com **MVC**:
+### **PATRONS UTILITZATS AL PROJECTE**
 
+En el desenvolupament d'aquest projecte s'han aplicat diversos patrons de disseny. Un d'ells és el patró MVC (Model-View-Controller). Els models estan representats per les classes SQLAlchemy que encapsulen la lògica de dades i les seves validacions. Les vistes són els fitxers HTML que gestionen la interfície d'usuari i presenten les dades de manera amigable. Els controladors són les rutes definides al fitxer principal, que connecten les dades amb les vistes i gestionen la lògica de negoci.
 
-#### **1. Patró MVC (Model-View-Controller)**
+També es pot identificar el patró Singleton a través de la gestió centralitzada de la base de dades. SQLAlchemy assegura que només hi hagi una instància activa de connexió a la base de dades durant tota l'execució de l'aplicació. A més, la configuració inicial de l'aplicació segueix un enfocament proper al patró Factory, que permet crear i configurar l'entorn de l'aplicació de manera modular i escalable.
 
-**Sí, s'ha utilitzat el patró MVC en certa manera, però de forma parcial.**
-
-- **Model (M)**: 
-  - Representat per les classes de models (`User`, `Appointment`, `MedicalRecord`) definides amb SQLAlchemy. Aquestes classes encapsulen la lògica de dades i les seves relacions, així com algunes validacions.
-  - Exemples:
-    ```python
-    class User(db.Model):
-        id = db.Column(db.Integer, primary_key=True)
-        username = db.Column(db.String(150), nullable=False)
-        email = db.Column(db.String(150), nullable=False, unique=True)
-    ```
-  
-- **View (V)**: 
-  - Representat pels fitxers HTML que es troben al directori `templates`. Aquests fitxers mostren les dades i s'encarreguen de la interacció amb l'usuari.
-  - Exemples:
-    - `login.html`: Formulari per iniciar sessió.
-    - `medical_records.html`: Taula que mostra registres mèdics.
-
-- **Controller (C)**: 
-  - Representat per les rutes definides al fitxer `app.py`. Aquestes rutes gestionen les sol·licituds de l'usuari, interactuen amb els models i renderitzen les vistes.
-  - Exemples:
-    ```python
-    @app.route('/login', methods=['GET', 'POST'])
-    def login():
-        if request.method == 'POST':
-            username = request.form['username']
-            password = request.form['password']
-            user = User.query.filter_by(username=username, password=password).first()
-            if user:
-                return redirect(url_for('welcome', username=username))
-        return render_template('login.html')
-    ```
-
-S'ha implementat un patró MVC bàsic. Encara es pot millorar separant millor la lògica del controlador i implementant fitxers específics per a cada component (Models, Views, Controllers).
+Aquestes decisions de disseny garanteixen que l'aplicació sigui fàcil de mantenir, escalable i segura, assegurant una separació clara de responsabilitats entre els components.
 
