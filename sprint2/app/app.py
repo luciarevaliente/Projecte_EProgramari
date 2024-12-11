@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+import sqlite3
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -15,8 +16,14 @@ class User(db.Model):
     surname = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)
-    #S'ha de validar que la edat estigui entre 18 i 120
     age = db.Column(db.Integer, nullable=False)
+    #S'ha de validar que la edat estigui entre 18 i 120
+
+    @staticmethod
+    def validate_age(age):
+        if int(age) < 18 or int(age) > 120:
+            raise ValueError("L'edat ha d'estar entre 18 i 120 anys.")
+    
 
 
 #Es modificarà
@@ -28,6 +35,12 @@ class Appointment(db.Model):
     time = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text, nullable=True)
 
+    @staticmethod
+    def validate_unique_appointment(user_id, date, time):
+        existing_appointment = Appointment.query.filter_by(user_id=user_id, date=date, time=time).first()
+        if existing_appointment:
+            raise ValueError("Aquesta cita ja està registrada per aquest usuari a aquesta data i hora.")
+
 #És modificarà
 
 class MedicalRecord(db.Model):
@@ -36,6 +49,12 @@ class MedicalRecord(db.Model):
     diagnosis = db.Column(db.Text, nullable=False)
     treatment = db.Column(db.Text, nullable=False)
     doctor_notes = db.Column(db.Text, nullable=True)
+
+    @staticmethod
+    def validate_unique_record(user_id, diagnosis, treatment):
+        existing_record = MedicalRecord.query.filter_by(user_id=user_id, diagnosis=diagnosis, treatment=treatment).first()
+        if existing_record:
+            raise ValueError("Aquest registre mèdic ja existeix per a aquest usuari.")
 
 with app.app_context():
     db.create_all()
@@ -71,14 +90,22 @@ def register():
         email2 = request.form['email2']
         age = request.form['age']
 
-
-        existing_user = User.query.filter_by(username=username).first()
-        if existing_user:
-            flash('Aquest usuari ja existeix. Prova amb un altre nom.', 'error')
+        # Comprova correu duplicat
+        existing_email = User.query.filter_by(email=email).first()
+        if existing_email:
+            flash('Aquest correu electrònic ja està registrat.', 'error')
             return redirect(url_for('register'))
 
+        # Comprova correus coincidents
         if email != email2:
-            flash('Correus electrònics no coincidents.', 'error')
+            flash('Els correus electrònics no coincideixen.', 'error')
+            return redirect(url_for('register'))
+
+        # Valida edat
+        try:
+            User.validate_age(age)
+        except ValueError as e:
+            flash(str(e), 'error')
             return redirect(url_for('register'))
 
         new_user = User(username=username, surname=surname, password=password, email=email, age=age)
@@ -99,6 +126,13 @@ def appointments():
         time = request.form['time']
         description = request.form['description']
 
+        # Validació de 'appointment' únic. 
+        try:
+            Appointment.validate_unique_appointment(user_id, date, time)
+        except ValueError as e:
+            flash(str(e), 'error')
+            return redirect(url_for('appointments'))
+        
         new_appointment = Appointment(user_id=user_id, date=date, time=time, description=description)
         db.session.add(new_appointment)
         db.session.commit()
@@ -117,6 +151,13 @@ def medical_records():
         diagnosis = request.form['diagnosis']
         treatment = request.form['treatment']
         doctor_notes = request.form['doctor_notes']
+
+        # Validació de 'medical_record' únic. 
+        try:
+            MedicalRecord.validate_unique_record(user_id, diagnosis, treatment)
+        except ValueError as e:
+            flash(str(e), 'error')
+            return redirect(url_for('medical_records'))
 
         new_record = MedicalRecord(user_id=user_id, diagnosis=diagnosis, treatment=treatment, doctor_notes=doctor_notes)
         db.session.add(new_record)
