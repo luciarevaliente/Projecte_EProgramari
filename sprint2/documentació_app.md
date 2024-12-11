@@ -48,7 +48,6 @@ La taula `MedicalRecord` conté els registres mèdics associats als usuaris. Aqu
    ```
    - SQLAlchemy llegeix les definicions de les classes i crea automàticament les taules corresponents amb les restriccions definides.
 
----
 
 ### **Avatatges d'una BDR per al projecte**
 
@@ -66,4 +65,48 @@ En el desenvolupament d'aquest projecte s'han aplicat diversos patrons de dissen
 
 També es pot identificar el patró Singleton a través de la gestió centralitzada de la base de dades. SQLAlchemy assegura que només hi hagi una instància activa de connexió a la base de dades durant tota l'execució de l'aplicació. A més, la configuració inicial de l'aplicació segueix un enfocament proper al patró Factory, que permet crear i configurar l'entorn de l'aplicació de manera modular i escalable.
 
+---
 
+### **4. TESTING DE L'APLICACIÓ**
+
+Els tests de l'aplicació es desenvolupen utilitzant el mòdul `unittest` de Python per assegurar la fiabilitat i coherència de les funcionalitats principals. A continuació es descriu com es defineixen i executen les proves, així com els objectius de cada test.
+
+#### **Configuració dels tests**
+
+Els tests es realitzen sobre una base de dades temporal en memòria (`sqlite:///:memory:`) que es crea i es destrueix per a cada sessió de test. Aquesta configuració evita alterar la base de dades real i permet realitzar proves aïllades.
+
+- **Mètode `setUp`**: Configura un entorn de test creant una nova base de dades abans de cada prova.
+- **Mètode `tearDown`**: Elimina totes les dades i taules després de cada prova per garantir que no hi hagi contaminació entre tests.
+
+```python
+def setUp(self):
+    app.config['TESTING'] = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+    self.app = app.test_client()
+    with app.app_context():
+        db.create_all()
+
+def tearDown(self):
+    with app.app_context():
+        db.session.remove()
+        db.drop_all()
+```
+
+#### **Proves implementades**
+
+1. **Test de registre d'usuari (`test_register_user`)**  
+   Aquesta prova comprova que es pot registrar un usuari correctament. Es fa una petició `POST` amb les dades de registre, i posteriorment es valida que l'usuari s'hagi guardat a la base de dades.
+
+   Objectiu: Assegurar que el procés de registre funciona correctament.
+
+2. **Test d'email únic (`test_unique_email`)**  
+   Verifica que no es poden registrar dos usuaris amb el mateix correu electrònic. Si s'intenta, es genera una excepció `IntegrityError`.
+
+   Objectiu: Garantir que la restricció `UNIQUE` sobre el camp `email` funciona.
+
+3. **Test de validació d'edat (`test_age_validation`)**  
+   Comprova que només es permeten valors d'edat entre 18 i 120 anys. Si es proporcionen valors fora d'aquest rang, es genera una excepció `ValueError`.
+
+   Objectiu: Assegurar que els registres d'usuaris compleixen la validació d'edat.
+
+Si totes les proves passen correctament, es garanteix que les funcionalitats testejades funcionen com s'espera. Aquesta test és fonamental per assegurar la qualitat del codi i detectar errors abans del desplegament.
