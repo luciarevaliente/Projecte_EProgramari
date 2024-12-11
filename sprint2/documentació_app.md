@@ -59,15 +59,19 @@ La taula `MedicalRecord` conté els registres mèdics associats als usuaris. Aqu
 4. **Integració amb SQLAlchemy**: L'ORM facilita la manipulació de dades en Python sense haver d'escriure SQL manualment.
 
 
-### **Patrons utilitzats**
+---
+
+### **4. PATRONS UTILITZATS**
 
 En el desenvolupament d'aquest projecte s'han aplicat diversos patrons de disseny. Un d'ells és el patró MVC (Model-View-Controller). Els models estan representats per les classes SQLAlchemy que encapsulen la lògica de dades i les seves validacions. Les vistes són els fitxers HTML que gestionen la interfície d'usuari i presenten les dades de manera amigable. Els controladors són les rutes definides al fitxer principal, que connecten les dades amb les vistes i gestionen la lògica de negoci.
 
 També es pot identificar el patró Singleton a través de la gestió centralitzada de la base de dades. SQLAlchemy assegura que només hi hagi una instància activa de connexió a la base de dades durant tota l'execució de l'aplicació. A més, la configuració inicial de l'aplicació segueix un enfocament proper al patró Factory, que permet crear i configurar l'entorn de l'aplicació de manera modular i escalable.
 
+PER ACABAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111111
+
 ---
 
-### **4. TESTING DE L'APLICACIÓ**
+### **5. TESTING DE L'APLICACIÓ**
 
 Els tests de l'aplicació es desenvolupen utilitzant el mòdul `unittest` de Python per assegurar la fiabilitat i coherència de les funcionalitats principals. A continuació es descriu com es defineixen i executen les proves, així com els objectius de cada test.
 
