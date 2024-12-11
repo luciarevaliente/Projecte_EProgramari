@@ -55,11 +55,10 @@ La taula **MedicalRecord** s'encarrega de gestionar els registres mèdics associ
 ---
 ### **Patrons utilitzats al projecte**
 
-En el projecte, s'han aplicat alguns patrons de disseny implícits o estructures que segueixen principis relacionats amb patrons populars. A continuació, analitzem si s'han utilitzat patrons com **Singleton**, **MVC**, entre altres:
+En el projecte, s'han aplicat alguns patrons de disseny implícits o estructures que segueixen principis relacionats amb patrons populars. A continuació, analitzem si s'han utilitzat patrons com **MVC**:
 
----
 
-### **1. Patró MVC (Model-View-Controller)**
+#### **1. Patró MVC (Model-View-Controller)**
 
 **Sí, s'ha utilitzat el patró MVC en certa manera, però de forma parcial.**
 
