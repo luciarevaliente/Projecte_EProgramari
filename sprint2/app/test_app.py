@@ -1,39 +1,20 @@
 import unittest
-from app import app, db, User
+from app import app, db, User, Appointment, MedicalRecord
+from sqlalchemy.exc import IntegrityError
 
-class UserModelTest(unittest.TestCase):
+class FlaskAppTestCase(unittest.TestCase):
 
     def setUp(self):
-        # Configura una base de dades de prova
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
         app.config['TESTING'] = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
         self.app = app.test_client()
         with app.app_context():
             db.create_all()
 
     def tearDown(self):
-        # Elimina la base de dades de prova
         with app.app_context():
             db.session.remove()
             db.drop_all()
-
-    def test_unique_email(self):
-        with app.app_context():
-            user1 = User(username="testuser1", surname="Surname1", email="test1@example.com", password="1234", age=30)
-            user2 = User(username="testuser2", surname="Surname2", email="test1@example.com", password="5678", age=35)
-            db.session.add(user1)
-            db.session.commit()
-
-            with self.assertRaises(Exception):  # Email duplicat
-                db.session.add(user2)
-                db.session.commit()
-
-    def test_age_validation(self):
-        with app.app_context():
-            with self.assertRaises(ValueError):  # Edat inferior a 18
-                User.validate_age(17)
-            with self.assertRaises(ValueError):  # Edat superior a 120
-                User.validate_age(121)
 
     def test_register_user(self):
         response = self.app.post('/register', data={
@@ -44,8 +25,26 @@ class UserModelTest(unittest.TestCase):
             'password': '1234',
             'age': 30
         })
-        self.assertEqual(response.status_code, 302)  # Redirecció correcta després del registre
+        self.assertEqual(response.status_code, 302)
+        with app.app_context():
+            user = User.query.filter_by(email='test@example.com').first()
+            self.assertIsNotNone(user)
 
+    def test_unique_email(self):
+        with app.app_context():
+            user1 = User(username="user1", surname="Surname1", email="test@example.com", password="1234", age=30)
+            user2 = User(username="user2", surname="Surname2", email="test@example.com", password="5678", age=35)
+            db.session.add(user1)
+            db.session.commit()
+            with self.assertRaises(IntegrityError):
+                db.session.add(user2)
+                db.session.commit()
+
+    def test_age_validation(self):
+        with self.assertRaises(ValueError):
+            User.validate_age(17)
+        with self.assertRaises(ValueError):
+            User.validate_age(121)
 
 if __name__ == '__main__':
     unittest.main()
