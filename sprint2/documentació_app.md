@@ -66,5 +66,4 @@ En el desenvolupament d'aquest projecte s'han aplicat diversos patrons de dissen
 
 També es pot identificar el patró Singleton a través de la gestió centralitzada de la base de dades. SQLAlchemy assegura que només hi hagi una instància activa de connexió a la base de dades durant tota l'execució de l'aplicació. A més, la configuració inicial de l'aplicació segueix un enfocament proper al patró Factory, que permet crear i configurar l'entorn de l'aplicació de manera modular i escalable.
 
-Aquestes decisions de disseny garanteixen que l'aplicació sigui fàcil de mantenir, escalable i segura, assegurant una separació clara de responsabilitats entre els components.
 
