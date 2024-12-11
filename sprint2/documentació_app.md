@@ -19,32 +19,11 @@ La base de dades s'ha creat utilitzant **SQLAlchemy**, un ORM (Object-Relational
 Aquest tipus de base de dades és adequat perquè l'aplicació tracta dades estructurades amb relacions clares entre entitats (usuaris, cites i registres mèdics). Els sistemes de bases de dades relacionals són ideals per a aplicacions on es necessita assegurar la coherència i integritat de les dades.
 
 ### **Definició de les taules**
-#### **1. Classe `User`**
+La taula **User** representa els usuaris registrats a l'aplicació. Està relacionada amb altres taules mitjançant una relació un-a-molts amb la taula **Appointment**, ja que un usuari pot tenir moltes cites, i amb la taula **MedicalRecord**, ja que un usuari pot tenir molts registres mèdics. Aquesta taula inclou diverses restriccions, com que el camp *email* ha de ser únic per evitar duplicats i que el camp *age* només admet valors entre 18 i 120 anys per assegurar que els registres siguin vàlids.
 
-- **Finalitat**: Representa els usuaris registrats a l'aplicació.
-- **Relació amb altres taules**:
-  - Relació un-a-molts amb `Appointment` (un usuari pot tenir moltes cites).
-  - Relació un-a-molts amb `MedicalRecord` (un usuari pot tenir molts registres mèdics).
-- **Restriccions**:
-  - `email`: Ha de ser únic per evitar duplicats.
-  - `age`: Només s'accepten valors entre 18 i 120 anys per assegurar registres vàlids.
+La taula **Appointment** s'utilitza per gestionar les cites mèdiques. Està vinculada a la taula **User** mitjançant el camp *user_id*, que identifica l'usuari que té la cita. Aquesta taula aplica restriccions perquè *user_id*, *date* i *time* siguin únics, evitant així duplicats. A més, la clau forana *user_id* garanteix que només es poden registrar cites per a usuaris que existeixen a la taula **User**.
 
-#### **2. Classe `Appointment`**
-
-- **Finalitat**: Gestiona les cites mèdiques.
-- **Relació amb altres taules**:
-  - `user_id`: Relació amb la taula `User` per identificar l'usuari que té la cita.
-- **Restriccions**:
-  - `user_id`, `date` i `time` han de ser únics per evitar duplicats.
-  - La clau forana `user_id` assegura que només es poden registrar cites per a usuaris existents.
-
-#### **3. Classe `MedicalRecord`**
-
-- **Finalitat**: Gestiona els registres mèdics associats als usuaris.
-- **Relació amb altres taules**:
-  - `user_id`: Relació amb la taula `User` per identificar l'usuari associat al registre mèdic.
-- **Restriccions**:
-  - `user_id`, `diagnosis` i `treatment` han de ser únics per evitar duplicats.
+La taula **MedicalRecord** s'encarrega de gestionar els registres mèdics associats als usuaris. Està relacionada amb la taula **User** mitjançant el camp *user_id*, que identifica l'usuari associat al registre mèdic. Les restriccions inclouen que els camps *user_id*, *diagnosis* i *treatment* han de ser únics per evitar duplicats i assegurar la consistència dels registres.
 
 
 ### **Com s'ha creat la base de dades?**
