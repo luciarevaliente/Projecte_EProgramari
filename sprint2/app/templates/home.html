@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='seniorlife.css') }}">
 </head>
 <body class="container">
-    <div class="logo-container">
-        <img src="{{ url_for('static', filename='resources/logo.png') }}" alt="SeniorLife Logo" class="logo">
-    </div>
     <h1 class="title">SeniorLife</h1>
-    <h2 class="subtitle">Accedir a SeniorLife</h2>
-    <h3 class="description">Crea un compte gratuït per unir-te a la família de SeniorLife</h3>
-
-    <p>
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='resources/logo-modified.png') }}" alt="SeniorLife Logo" class="logo">
+    </div>
+    <div class="access-container">
+        <h2 class="subtitle">Accedir a SeniorLife</h2>
+        <h3 class="description">Crea un compte gratuït per unir-te a la família de SeniorLife</h3>
         <a href="{{ url_for('login') }}" class="button">Accedir amb correu electrònic</a>
-    </p>
+    </div>
 </body>
 </html>
+
+
