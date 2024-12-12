@@ -31,6 +31,33 @@ La taula `Appointment` s'encarrega de gestionar les cites mèdiques. Cada cita e
 La taula `MedicalRecord` conté els registres mèdics associats als usuaris. Aquesta taula també està vinculada a `User` mitjançant `user_id`. Per garantir la consistència, els camps `user_id`, diagnòstic i tractament són únics en combinació. Això evita que es registrin duplicats per al mateix usuari amb el mateix diagnòstic i tractament.
 
 
+   ### **Explicació del Diagrama ER**
+
+El diagrama es pot visualitza a la imatge `diagrama_BD_ER.png`.
+
+1. **Entitats Principals**:
+   - **User**: Representa els usuaris de l'aplicació.
+   - **Appointment**: Gestiona les cites mèdiques dels usuaris.
+   - **MedicalRecord**: Conté els registres mèdics associats a cada usuari.
+
+2. **Relacions Entre Entitats**:
+   - Un **User** pot tenir **múltiples** **Appointment** (relació un a molts).
+   - Un **User** pot tenir **múltiples** **MedicalRecord** (relació un a molts).
+
+3. **Claus Primàries i Foranes**:
+   - Les taules **Appointment** i **MedicalRecord** tenen un camp `user_id` que és una clau forana referenciada a la clau primària `id` de **User**.
+   - Això assegura la **integritat referencial**, garantint que només es puguin registrar cites i registres mèdics per a usuaris existents.
+
+4. **Restriccions**:
+   - **User**:
+     - El camp `email` és **únic** (UNIQUE), per evitar conflictes.
+     - El camp `age` té valors restringits entre 18 i 120 anys.
+   - **Appointment**:
+     - La combinació de `user_id`, `date`, i `time` és **única**, per evitar cites duplicades per al mateix usuari en la mateixa hora.
+   - **MedicalRecord**:
+     - Els camps `user_id`, `grup_sanguini`, i altres atributs poden ser únics en combinació, assegurant que no hi hagi duplicats.
+
+
    ### **Com s'ha creat la base de dades?**
 
 1. **Configuració inicial amb SQLAlchemy**:
