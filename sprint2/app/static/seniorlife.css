@@ -29,7 +29,7 @@ body {
 .logo {
     width: 150px;
     height: auto;
-    margin-bottom: 20px; /* Separació entre el logo i el rectangle gris */
+    margin-bottom: 1px; /* Separació entre el logo i el rectangle gris */
 }
 
 /* Rectangle gris només per a la secció d'accés */

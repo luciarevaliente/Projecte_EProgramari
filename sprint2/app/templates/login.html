@@ -5,29 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
 </head>
 <body>
-    <form method="POST">
-        <h2>Inicia sessió</h2>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        <ul>
-            {% for category, message in messages %}
-            <li class="{{ category }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
-        <label for="username">Usuari:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">Contrasenya:</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">Entrar</button>
-
-        <p>No tens un compte? <a href="{{ url_for('register') }}">Registra't aquí</a>.</p>
-
-    </form>
+    <div class="container">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='resources/logo-modified.png') }}" alt="SeniorLife Logo" class="logo">
+            <h1 class="title">SeniorLife</h1>
+        </div>
+        <form method="POST">
+            <h2 class="form-title">Inicia sessió</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <input type="text" id="username" name="username" placeholder="Correu electrònic" required>
+            <input type="password" id="password" name="password" placeholder="Contrasenya (8 dígits)" required>
+            <button type="submit">Iniciar sessió</button>
+            <p class="terms">
+                Creant un compte, acceptes els <a href="#">Termes de Servei</a> i la <a href="#">Política de Privacitat</a>.
+            </p>
+            <p class="register-link"><a href="{{ url_for('register') }}">Necessites un compte nou?</a></p>
+        </form>
+    </div>
 </body>
 </html>
+
