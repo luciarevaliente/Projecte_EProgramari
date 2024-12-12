@@ -16,7 +16,8 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(150), nullable=False)
+    username=db.Column(db.String(150), nullable=False)
+    name = db.Column(db.String(150), nullable=False)
     surname = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String(150), nullable=False)
@@ -76,8 +77,8 @@ def login():
             flash('Usuari o contrasenya incorrectes!', 'error')
     return render_template('login.html')
 
-@app.route('/upload', methods=['GET','POST'])
-def upload():
+@app.route('/upload/<username>', methods=['GET','POST'])
+def upload(username):
     if request.method == 'POST':
         if 'file' not in request.files:
             flash('Cap fitxer seleccionat')
@@ -89,26 +90,43 @@ def upload():
             return redirect(request.url)
 
         if file:
+            print(file.filename)
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
             file.save(file_path)
             flash(f"Fitxer {file.filename} pujat correctament!")
-            return redirect(url_for('appointments'))
+            return redirect(url_for('appointments',username=username))
 
-    return render_template('upload.html')
+    return render_template('upload.html',username=username)
 
 @app.route('/welcome/<username>')
 def welcome(username):
-    return render_template('welcome.html', username=username)
+    # Busca l'usuari a la base de dades
+    user = User.query.filter_by(username=username).first()
+    if not user:
+        print("Usuari no trobat!", "error")
+        return redirect(url_for('login'))
+    
+    # Obté les cites associades a l'usuari
+    appointments = Appointment.query.filter_by(user_id=user.username).all()
+    print(user.username,appointments)
+    # Passa les cites al template
+    return render_template('welcome.html', username=username, appointments=appointments)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+        name=request.form['name']
         username = request.form['username']
         surname = request.form['surname']
         password = request.form['password']
         email = request.form['email']
         email2 = request.form['email2']
         age = request.form['age']
+
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash('Aquest user-name ja està registrat.', 'error')
+            return redirect(url_for('register'))
 
         # Comprova correu duplicat
         existing_email = User.query.filter_by(email=email).first()
@@ -128,7 +146,7 @@ def register():
             flash("Rang d'edat permès 18-120.", 'error')
             return redirect(url_for('register'))
 
-        new_user = User(username=username, surname=surname, password=password, email=email, age=age)
+        new_user = User(name=name, surname=surname, username=username,password=password, email=email, age=age)
         db.session.add(new_user)
         db.session.commit()
 
@@ -143,16 +161,16 @@ def choose(username):
 
         accio = request.form['action']
         if accio == 'primer':
-            return redirect(url_for('medical_records'))
+            return redirect(url_for('medical_records',username=username))
         if accio == 'segon':
             return redirect(url_for('welcome', username=username))
 
     return render_template('choose.html', username=username)
 
-@app.route('/appointments', methods=['GET', 'POST'])
-def appointments():
+@app.route('/appointments/<username>', methods=['GET', 'POST'])
+def appointments(username):
     if request.method == 'POST':
-        user_id = request.form['user_id']
+        user_id = username
         date = request.form['date']
         time = request.form['time']
         description = request.form['description']
@@ -175,10 +193,10 @@ def appointments():
     return render_template('appointments.html', appointments=all_appointments)
 
 
-@app.route('/medical_records', methods=['GET', 'POST'])
-def medical_records():
+@app.route('/medical_records/<username>', methods=['GET', 'POST'])
+def medical_records(username):
     if request.method == 'POST':
-        user_id = request.form['user_id']
+        username = username
         alergies = request.form['llista_alergies']
         grup_sanguini = request.form['grup_sanguini']
         medicacio_actual = request.form['medicacio_actual']
@@ -187,17 +205,17 @@ def medical_records():
 
         # Validació de 'medical_record' únic. 
         try:
-            MedicalRecord.validate_unique_record(user_id, grup_sanguini, medicacio_actual, condicions_especials, llista_alergies)
+            MedicalRecord.validate_unique_record(username, grup_sanguini, medicacio_actual, condicions_especials, llista_alergies)
         except ValueError as e:
             flash(str(e), 'error')
-            return redirect(url_for('medical_records'))
+            return redirect(url_for('medical_records',username=username))
 
-        new_record = MedicalRecord(user_id=user_id, grup_sanguini=grup_sanguini, medicacio_actual=medicacio_actual, condicions_especials=condicions_especials, llista_alergies=llista_alergies)
+        new_record = MedicalRecord(user_id=username, grup_sanguini=grup_sanguini, medicacio_actual=medicacio_actual, condicions_especials=condicions_especials, llista_alergies=llista_alergies)
         db.session.add(new_record)
         db.session.commit()
 
         flash('Registre mèdic creat correctament!', 'success')
-        return redirect(url_for('upload'))
+        return redirect(url_for('upload',username=username))
 
     all_records = MedicalRecord.query.all()
     return render_template('medical_records.html', records=all_records)

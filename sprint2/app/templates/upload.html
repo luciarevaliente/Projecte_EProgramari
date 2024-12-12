@@ -9,7 +9,7 @@
     <div class="container">
         <h1>SeniorLife</h1>
         <p>Importa el fitxer del teu historial mèdic:</p>
-        <form action="/upload" method="POST" enctype="multipart/form-data">
+        <form action="{{ url_for('upload', username=username) }}" method="POST" enctype="multipart/form-data">
             <div class="upload-box">
                 <img src="{{ url_for('static', filename='resources/logo.png') }}">
                 <p>Escull un fitxer per pujar</p>

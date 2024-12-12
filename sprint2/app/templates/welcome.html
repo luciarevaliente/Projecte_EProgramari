@@ -3,19 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benvingut</title>
+    <title>Benvinguda</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='welcome.css') }}">
 </head>
 <body>
-    <h1>Benvingut, {{ username }}!</h1>
-    <p>Has iniciat sessió correctament.</p>
+    <header class="header">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='resources/logo-modified.png') }}" alt="SeniorLife Logo" class="logo">
+            <h1 class="title">SeniorLife</h1>
+        </div>
+        <div class="user-info">
+            <p class="welcome-message">Benvingut/da {{ username }}! 👋</p>
+            <img src="{{ url_for('static', filename='resources/perfil.webp') }}" alt="Usuari" class="user-icon">
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="alerts">
+            <h2>Cites, Recordatoris i Alertes <span class="alert-count">{{ appointments|length }}</span></h2>
+            <ul class="alert-list">
+                {% for appointment in appointments %}
+                <li class="alert-item">
+                    <span class="alert-icon red">❗</span>
+                    <p>{{ appointment['description'] }}<br>
+                    <small>{{ appointment['date'] }} - {{ appointment['time'] }}</small></p>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
 </body>
-
-<nav>
-    <a href="{{ url_for('appointments') }}">Cites Mèdiques</a> |
-    <a href="{{ url_for('medical_records') }}">Registres Mèdics</a> |
-    <a href="{{ url_for('login') }}">Tornar enrere</a>
-
-</nav>
-
 </html>
+
