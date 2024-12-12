@@ -169,7 +169,7 @@ def appointments():
         db.session.commit()
 
         flash('Cita mèdica registrada correctament!', 'success')
-        return redirect(url_for('appointments'))
+        return redirect(url_for('welcome',username=user_id))
 
     all_appointments = Appointment.query.all()
     return render_template('appointments.html', appointments=all_appointments)
