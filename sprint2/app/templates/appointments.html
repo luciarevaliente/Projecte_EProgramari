@@ -4,28 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cites Mèdiques</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='appointments.css') }}">
 </head>
 <body>
-    <h2>Registra una cita mèdica</h2>
-    <form method="POST">
+    <header class="header">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='resources/logo-modified.png') }}" alt="SeniorLife Logo" class="logo">
+            <h1 class="title">SeniorLife</h1>
+        </div>
+        <div class="user-info">
+            <p class="welcome-message">Benvingut/da {{ username }}! 👋</p>
+        </div>
+    </header>
 
-        <label for="date">Data:</label>
-        <input type="date" id="date" name="date" required>
+    <main class="main-content">
+        <h2 class="form-title">ESCULL UN DIA PER TINDRE LA PRIMERA CITA!</h2>
+        <p class="form-subtitle">Un metge especialitzat validarà les teves dades mèdiques i et donarà accés a l'aplicació</p>
+        <form method="POST" class="appointment-form">
+            <label for="date">Selecciona una data: <span class="required">*</span></label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="time">Escriu l'hora: <span class="required">*</span></label>
+            <input type="time" id="time" name="time" required>
+            
+            <label for="description">Descripció (opcional):</label>
+            <textarea id="description" name="description" placeholder="Explica breument el motiu de la cita..."></textarea>
 
-        <label for="time">Hora:</label>
-        <input type="time" id="time" name="time" required>
-
-        <label for="description">Descripció:</label>
-        <textarea id="description" name="description"></textarea>
-
-        <button type="submit">Guardar cita</button>
-    </form>
-    <h2>Llista de cites</h2>
-    <ul>
-        {% for appointment in appointments %}
-        <li>{{ appointment.date }} {{ appointment.time }} - {{ appointment.description }}</li>
-        {% endfor %}
-    </ul>
-    <button onclick="window.history.back()">Tornar enrere</button>
+            <button type="submit" class="submit-button">Continuar</button>
+            <button type="button" class="back-button" onclick="window.history.back()">Tornar enrere</button>
+        </form>
+    </main>
 </body>
 </html>

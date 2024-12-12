@@ -1,0 +1,135 @@
+/* Form General */
+.appointment-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    box-sizing: border-box; /* Assegura que el padding no afecti l'amplada total */
+}
+
+.appointment-form label {
+    font-size: 18px; /* Augmenta la mida de la lletra */
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    color: #333;
+}
+
+.appointment-form input[type="date"],
+.appointment-form input[type="time"],
+.appointment-form textarea {
+    width: calc(100% - 24px); /* Ajusta per al padding i evitar que surti del contenidor */
+    padding: 12px; /* Augmenta el padding per més visibilitat */
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px; /* Augmenta la mida de la lletra */
+    box-sizing: border-box; /* Evita que l'amplada sobrepassi el contenidor */
+}
+
+.appointment-form textarea {
+    resize: none;
+    height: 70px; /* Augmenta l'altura */
+}
+
+.appointment-form .submit-button {
+    display: block;
+    width: 100%;
+    background-color: #4f76b6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.appointment-form .submit-button:hover {
+    background-color: #3a5c91;
+}
+
+.appointment-form .back-button {
+    display: block;
+    width: 100%;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px; /* Espai entre el botó de "Continuar" i "Tornar enrere" */
+}
+
+.appointment-form .back-button:hover {
+    background-color: #f2f2f2;
+}
+
+.appointment-form .required {
+    color: red;
+    font-size: 14px; /* Augmenta la mida del text */
+    margin-left: 5px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+.title {
+    font-size: 24px;
+    color: #4f76b6;
+    margin: 0;
+}
+
+.user-info {
+    text-align: right;
+    font-size: 14px;
+}
+
+.welcome-message {
+    font-family: 'Alegreya Sans';
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 22px; /* Augmenta la mida del títol */
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-subtitle {
+    font-size: 18px; /* Augmenta la mida del subtítol */
+    color: #666;
+    margin-bottom: 20px;
+}
