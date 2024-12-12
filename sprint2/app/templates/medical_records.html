@@ -4,25 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registres Mèdics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='medical_records.css') }}">
 </head>
 <body>
-    <h2>Crea un registre mèdic</h2>
-    <form method="POST">
-
-        <label for="llista_alergies">Alèrgies:</label>
-        <textarea id="llista_alergies" name="llista_alergies" required></textarea>
-
-        <label for="grup_sanguini">Grup sanguini:</label>
-        <textarea id="grup_sanguini" name="grup_sanguini" required></textarea>
-
-        <label for="condicions_especials">Condicions especials:</label>
-        <textarea id="condicions_especials" name="condicions_especials"></textarea>
-
-        <label for="medicacio_actual">Medicació actual:</label>
-        <textarea id="medicacio_actual" name="medicacio_actual"></textarea>
-
-        <button type="submit">Continuar</button>
-    </form>
-    <button onclick="window.history.back()">Tornar enrere</button>
+    <header class="header">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='resources/logo-modified.png') }}" alt="SeniorLife Logo" class="logo">
+            <h1 class="title">SeniorLife</h1>
+        </div>
+        <div class="user-info">
+            <p class="welcome-message">BENVINGUT/DA {{ username }}! 👋</p>
+        </div>
+    </header>
+    <main class="main-content">
+        <h2>Completa el següent registre mèdic:</h2>
+        <form method="POST" class="medical-form">
+            <div class="section">
+                <h3>Al·lèrgies <span class="add-icon">+</span></h3>
+                <ul>
+                    <li><span class="icon warning">⚠️</span> Préssec</li>
+                    <li><span class="icon warning">⚠️</span> Gluten</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>Grup sanguini i condicions especials <span class="add-icon">+</span></h3>
+                <ul>
+                    <li><span class="icon blood">🩸</span> B+</li>
+                    <li><span class="icon condition">⚕️</span> Facosclerosis</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h3>Medicació actual <span class="add-icon">+</span></h3>
+                <ul>
+                    <li><span class="icon pill">💊</span> Vitamines C i E</li>
+                    <li><span class="icon pill">💊</span> N-acetilcarnosina</li>
+                    <li><span class="icon pill">💊</span> Dorzolamida</li>
+                </ul>
+            </div>
+            <button type="submit" class="submit-button">Continuar</button>
+        </form>
+        <button onclick="window.history.back()" class="back-button">Tornar enrere</button>
+    </main>
 </body>
 </html>
+

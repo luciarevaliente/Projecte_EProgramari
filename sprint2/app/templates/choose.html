@@ -3,12 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Quin ús vols?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='choose.css') }}">
 </head>
 <body>
-    <form method="POST">
-        <button type="submit" name="action" value="primer">Monitorització i ajuda mèdica</button>
-        <button type="submit" name="action" value="segon">Únicament com a xarxa social</button>
-    </form>
-    <button onclick="window.history.back()">Tornar enrere</button>
+    <header class="header">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='resources/logo-modified.png') }}" alt="SeniorLife Logo" class="logo">
+            <h1 class="title">SeniorLife</h1>
+        </div>
+    </header>
+    <main class="main-content">
+        <h2>Quin ús vols?</h2>
+        <form method="POST" class="choose-form">
+            <button type="submit" name="action" value="primer" class="option-button">
+                <img src="{{ url_for('static', filename='resources/mèdic.jpg') }}" alt="Monitorització i ajuda mèdica">
+                <p>Monitorització i ajuda mèdica</p>
+            </button>
+            <button type="submit" name="action" value="segon" class="option-button">
+                <img src="{{ url_for('static', filename='resources/social.jpg') }}" alt="Únicament com a xarxa social">
+                <p>Únicament com a xarxa social</p>
+            </button>
+        </form>
+
+    </main>
 </body>
 </html>
+

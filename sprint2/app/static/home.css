@@ -1,0 +1,78 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Title (SeniorLife) */
+.title {
+    font-size: 36px;
+    font-family: 'Francois One', sans-serif;
+    font-weight: bold;
+    color: #4f76b6;
+    margin-bottom: 20px; /* Separació entre el títol i el logo */
+    text-align: center;
+}
+
+/* Logo */
+.logo-container {
+    text-align: center;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1px; /* Separació entre el logo i el rectangle gris */
+}
+
+/* Rectangle gris només per a la secció d'accés */
+.access-container {
+    background-color: #f2f2f2; /* Color gris clar */
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Lleuger efecte d'ombra */
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    margin: 10px 0;
+}
+
+/* Description */
+.description {
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+/* Button */
+.button {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #4f76b6;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #3a5c91;
+}
+

@@ -218,7 +218,7 @@ def medical_records(username):
         return redirect(url_for('upload',username=username))
 
     all_records = MedicalRecord.query.all()
-    return render_template('medical_records.html', records=all_records)
+    return render_template('medical_records.html', records=all_records, username=username)
 
 if __name__ == '__main__':
     app.run(debug=True)

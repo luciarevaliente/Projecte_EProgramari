@@ -1,0 +1,156 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espai entre el logotip i el títol */
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+
+.title {
+    font-size: 24px;
+    color: #4f76b6;
+    margin: 0;
+}
+.user-info {
+    text-align: right;
+    font-size: 14px;
+}
+
+.welcome-message {
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+/* Main content */
+.main-content {
+    padding: 20px;
+}
+
+.medical-form {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section h3 {
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.add-icon {
+    font-size: 18px;
+    color: #4f76b6;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.icon {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.icon.warning {
+    color: #e74c3c;
+}
+
+.icon.blood {
+    color: #c0392b;
+}
+
+.icon.condition {
+    color: #3498db;
+}
+
+.icon.pill {
+    color: #2ecc71;
+}
+
+/* Buttons */
+.submit-button {
+    display: block;
+    width: 100%;
+    background-color: #4f76b6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #3a5c91;
+}
+
+.back-button {
+    display: block;
+    width: 100%; /* Ocupa tota l'amplada del contenidor */
+    max-width: 400px; /* Mateixa amplada màxima que el formulari */
+    margin: 0 auto; /* Centrar el botó dins del contenedor */
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.back-button:hover {
+    background-color: #f2f2f2;
+}
