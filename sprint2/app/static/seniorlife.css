@@ -1,0 +1,64 @@
+/* Específic de la pàgina SeniorLife */
+
+/* General styles */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    height: 100vh;
+}
+
+/* Logo */
+.logo-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Title and subtitles */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4f76b6;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    margin: 5px 0;
+}
+
+.description {
+    font-size: 16px;
+    color: #666666;
+    text-align: center;
+    margin: 10px 0;
+    padding: 0 20px;
+}
+
+/* Button */
+.button {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #4f76b6;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #3a5c91;
+}

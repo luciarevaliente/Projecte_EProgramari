@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeniorLife</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='seniorlife.css') }}">
 </head>
-<body>
-    <img src="{{ url_for('static', filename='resources/logo.png') }}">
-    <h2>Accedir a SeniorLife</h2>
-    <h3>Crea un compte gratuït per unir-te a la família de SeniorLife</h3>
+<body class="container">
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='resources/logo.png') }}" alt="SeniorLife Logo" class="logo">
+    </div>
+    <h1 class="title">SeniorLife</h1>
+    <h2 class="subtitle">Accedir a SeniorLife</h2>
+    <h3 class="description">Crea un compte gratuït per unir-te a la família de SeniorLife</h3>
 
-    <p><a href="{{ url_for('login') }}">Accedir amb correu electrònic</a></p>
+    <p>
+        <a href="{{ url_for('login') }}" class="button">Accedir amb correu electrònic</a>
+    </p>
 </body>
 </html>

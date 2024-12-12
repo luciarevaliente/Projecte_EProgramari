@@ -1,11 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    background-color: #f4f4f0;
+    padding: 0;
+    box-sizing: border-box;
 }
 form {
     background: white;
@@ -35,4 +32,14 @@ button:hover {
 }
 .error {
     color: red;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
 }
