@@ -33,12 +33,12 @@ h2 {
     height: auto;
 }
 
-
 .title {
     font-size: 24px;
     color: #4f76b6;
     margin: 0;
 }
+
 .user-info {
     text-align: right;
     font-size: 14px;
@@ -53,74 +53,67 @@ h2 {
 /* Main content */
 .main-content {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Porta el contingut cap amunt */
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Ajusta segons l'altura del header */
 }
 
-.medical-form {
+h2 {
+    margin-bottom: 30px; /* Espai entre el text i el formulari */
+}
+
+/* Formulari centrat */
+form {
+    max-width: 400px;
+    width: 100%;
     background-color: white;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    max-width: 400px;
-    margin: 0 auto;
+    text-align: center;
 }
 
-.section {
+/* Caixa de càrrega */
+.upload-box {
+    position: relative;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
     margin-bottom: 20px;
+    transition: border-color 0.3s ease;
 }
 
-.section h3 {
-    font-size: 16px;
-    color: #333;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.upload-box:hover {
+    border-color: #4f76b6;
+}
+
+.upload-icon {
+    width: 50px;
     margin-bottom: 10px;
 }
 
-.add-icon {
-    font-size: 24px;
-    color: #4f76b6;
+.upload-label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+#file-upload {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-ul li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.icon {
-    font-size: 24px; /* Augmenta la mida del logo */
-    margin-right: 10px; /* Manté un espai adequat entre el logo i el text */
-    display: inline-block;
-    width: 30px; /* Assegura una mida consistent */
-    text-align: center; /* Centra el logo si és més gran */
-}
-
-.icon.warning {
-    color: #e74c3c;
-}
-
-.icon.blood {
-    color: #c0392b;
-}
-
-.icon.condition {
-    color: #3498db;
-}
-
-.icon.pill {
-    color: #2ecc71;
-}
-
-/* Buttons */
+/* Botons */
 .submit-button {
     display: block;
     width: 100%;
@@ -132,9 +125,7 @@ ul li {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 10px; /* Separació amb el botó de tornar enrere */
-
+    margin-bottom: 10px;
 }
 
 .submit-button:hover {
@@ -143,9 +134,7 @@ ul li {
 
 .back-button {
     display: block;
-    width: 100%; /* Ocupa tota l'amplada del contenidor */
-    max-width: 400px; /* Mateixa amplada màxima que el formulari */
-    margin: 0 auto; /* Centrar el botó dins del contenedor */
+    width: 100%;
     background-color: white;
     color: #333;
     border: 1px solid #ccc;
@@ -154,28 +143,14 @@ ul li {
     font-size: 14px;
     cursor: pointer;
     text-align: center;
-    transition: background-color 0.2s, color 0.2s;
 }
 
 .back-button:hover {
     background-color: #f2f2f2;
 }
-
-/* Llistes dins les seccions */
-ul.list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-ul.list li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+.file-name {
     font-size: 14px;
-}
-
-ul.list li .icon {
-    margin-right: 10px;
-    font-size: 18px;
+    color: #555;
+    margin-top: 10px;
+    font-style: italic;
 }

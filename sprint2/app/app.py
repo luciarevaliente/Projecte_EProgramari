@@ -90,7 +90,6 @@ def upload(username):
             return redirect(request.url)
 
         if file:
-            print(file.filename)
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
             file.save(file_path)
             flash(f"Fitxer {file.filename} pujat correctament!")
@@ -199,8 +198,8 @@ def medical_records(username):
         username = username
         alergies = request.form['llista_alergies']
         grup_sanguini = request.form['grup_sanguini']
-        medicacio_actual = request.form['medicacio_actual']
         condicions_especials = request.form['condicions_especials']
+        medicacio_actual = request.form['medicacio_actual']
         llista_alergies = ','.join([a.strip() for a in alergies.split(',')])
 
         # Validació de 'medical_record' únic. 

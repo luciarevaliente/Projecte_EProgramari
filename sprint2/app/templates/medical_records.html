@@ -14,38 +14,90 @@
             <h1 class="title">SeniorLife</h1>
         </div>
         <div class="user-info">
-            <p class="welcome-message">BENVINGUT/DA {{ username }}! 👋</p>
+            <p class="welcome-message">Benvingut/da {{ username }}! 👋</p>
         </div>
     </header>
     <main class="main-content">
         <h2>Completa el següent registre mèdic:</h2>
-        <form method="POST" class="medical-form">
-            <div class="section">
-                <h3>Al·lèrgies <span class="add-icon">+</span></h3>
-                <ul>
-                    <li><span class="icon warning">⚠️</span> Préssec</li>
-                    <li><span class="icon warning">⚠️</span> Gluten</li>
-                </ul>
+        <form method="POST" class="medical-form" id="medicalForm">
+            <!-- Al·lèrgies -->
+            <div class="section" id="allergies">
+                <h3>Al·lèrgies <span class="add-icon" onclick="addItem('allergies', '⚠️')">+</span></h3>
+                <ul class="list"></ul>
+                <input type="hidden" name="llista_alergies" id="hiddenAllergies">
             </div>
-            <div class="section">
-                <h3>Grup sanguini i condicions especials <span class="add-icon">+</span></h3>
-                <ul>
-                    <li><span class="icon blood">🩸</span> B+</li>
-                    <li><span class="icon condition">⚕️</span> Facosclerosis</li>
-                </ul>
+            <!-- Grup sanguini -->
+            <div class="section" id="bloodGroup">
+                <h3>Grup sanguini <span class="add-icon" onclick="addItem('bloodGroup', '🩸')">+</span></h3>
+                <ul class="list"></ul>
+                <input type="hidden" name="grup_sanguini" id="hiddenBloodGroup">
             </div>
-            <div class="section">
-                <h3>Medicació actual <span class="add-icon">+</span></h3>
-                <ul>
-                    <li><span class="icon pill">💊</span> Vitamines C i E</li>
-                    <li><span class="icon pill">💊</span> N-acetilcarnosina</li>
-                    <li><span class="icon pill">💊</span> Dorzolamida</li>
-                </ul>
+
+            <!-- Condicions especials -->
+            <div class="section" id="specialConditions">
+                <h3>Condicions especials <span class="add-icon" onclick="addItem('specialConditions', '⚕️')">+</span></h3>
+                <ul class="list"></ul>
+                <input type="hidden" name="condicions_especials" id="hiddenSpecialConditions">
+            </div>
+            <!-- Medicació actual -->
+            <div class="section" id="medication">
+                <h3>Medicació actual <span class="add-icon" onclick="addItem('medication', '💊')">+</span></h3>
+                <ul class="list"></ul>
+                <input type="hidden" name="medicacio_actual" id="hiddenMedication">
+
             </div>
             <button type="submit" class="submit-button">Continuar</button>
+            <button type="button" onclick="window.history.back()" class="back-button">Tornar enrere</button>
         </form>
-        <button onclick="window.history.back()" class="back-button">Tornar enrere</button>
     </main>
+    <script src="{{ url_for('static', filename='medical_records.js') }}"></script>
+    <script>
+        // Funció per afegir elements a la secció corresponent
+        function addItem(sectionId, icon) {
+            const section = document.getElementById(sectionId);
+            const list = section.querySelector('.list');
+            const hiddenInput = section.querySelector('input[type="hidden"]');
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = `Escriu aquí un element per a ${sectionId}`;
+            input.classList.add('new-item-input');
+
+            const confirmButton = document.createElement('button');
+            confirmButton.textContent = 'Confirmar';
+            confirmButton.classList.add('confirm-button');
+            confirmButton.onclick = function (e) {
+                e.preventDefault();
+
+                const value = input.value.trim();
+                if (value) {
+                    const listItem = document.createElement('li');
+                    const iconSpan = document.createElement('span');
+                    iconSpan.classList.add('icon');
+                    iconSpan.textContent = icon;
+
+                    const textSpan = document.createElement('span');
+                    textSpan.textContent = value;
+
+                    listItem.appendChild(iconSpan);
+                    listItem.appendChild(textSpan);
+                    list.appendChild(listItem);
+
+                    if (hiddenInput.value) {
+                        hiddenInput.value += `,${value}`;
+                    } else {
+                        hiddenInput.value = value;
+                    }
+
+                    input.remove();
+                    confirmButton.remove();
+                }
+            };
+
+    section.appendChild(input);
+    section.appendChild(confirmButton);
+}
+
+    </script>
 </body>
 </html>
-
