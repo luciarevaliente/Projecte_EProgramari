@@ -1,0 +1,104 @@
+/* Contenidor general */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+/* Logo */
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 28px;
+    color: #4f76b6;
+    margin: 0;
+}
+
+/* Formulari */
+.register-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.form-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Camps del formulari */
+input {
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Botó */
+button {
+    background-color: #4f76b6;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3a5c91;
+}
+
+/* Termes i política */
+.terms {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+}
+
+.terms a {
+    color: #4f76b6;
+    text-decoration: none;
+}
+
+/* Enllaç d'inici de sessió */
+.login-link {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #333;
+    text-decoration: underline;
+}
