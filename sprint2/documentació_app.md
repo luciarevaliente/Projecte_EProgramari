@@ -82,19 +82,6 @@ Els tests es realitzen sobre una base de dades temporal en memòria (`sqlite:///
 - **Mètode `setUp`**: Configura un entorn de test creant una nova base de dades abans de cada prova.
 - **Mètode `tearDown`**: Elimina totes les dades i taules després de cada prova per garantir que no hi hagi contaminació entre tests.
 
-```python
-def setUp(self):
-    app.config['TESTING'] = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
-    self.app = app.test_client()
-    with app.app_context():
-        db.create_all()
-
-def tearDown(self):
-    with app.app_context():
-        db.session.remove()
-        db.drop_all()
-```
 
 #### **Proves implementades**
 
@@ -113,4 +100,4 @@ def tearDown(self):
 
    Objectiu: Assegurar que els registres d'usuaris compleixen la validació d'edat.
 
-Si totes les proves passen correctament, es garanteix que les funcionalitats testejades funcionen com s'espera. Aquesta test és fonamental per assegurar la qualitat del codi i detectar errors abans del desplegament.
+Si totes les proves passen correctament, es garanteix que les funcionalitats testejades funcionen com s'espera. Aquesta test és fonamental per assegurar la qualitat del codi i detectar errors abans del desplegament de la nostra aplicació.
