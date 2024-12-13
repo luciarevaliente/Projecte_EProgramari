@@ -178,18 +178,18 @@ def appointments(username):
         try:
             Appointment.validate_unique_appointment(user_id, date, time)
         except ValueError as e:
-            flash(str(e), 'error')
-            return redirect(url_for('appointments'))
+            flash(str(e), 'error')  # Afegeix un missatge flash amb el detall de l'error
+            return redirect(url_for('appointments', username=user_id))
         
         new_appointment = Appointment(user_id=user_id, date=date, time=time, description=description)
         db.session.add(new_appointment)
         db.session.commit()
 
-        flash('Cita mèdica registrada correctament!', 'success')
-        return redirect(url_for('welcome',username=user_id))
+        flash('Cita mèdica registrada correctament!', 'success')  # Missatge d'èxit
+        return redirect(url_for('welcome', username=user_id))
 
     all_appointments = Appointment.query.all()
-    return render_template('appointments.html', appointments=all_appointments,username=username)
+    return render_template('appointments.html', appointments=all_appointments)
 
 
 @app.route('/medical_records/<username>', methods=['GET', 'POST'])

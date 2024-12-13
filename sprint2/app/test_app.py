@@ -19,8 +19,9 @@ class UserModelTest(unittest.TestCase):
 
     def test_unique_email(self):
         with app.app_context():
-            user1 = User(username="testuser1", surname="Surname1", email="test1@example.com", password="1234", age=30)
-            user2 = User(username="testuser2", surname="Surname2", email="test1@example.com", password="5678", age=35)
+            user1 = User(username="testuser1", name="TestName1", surname="Surname1", email="test1@example.com", password="1234", age=30)
+            user2 = User(username="testuser2", name="TestName2", surname="Surname2", email="test1@example.com", password="5678", age=35)
+
             db.session.add(user1)
             db.session.commit()
 
@@ -38,6 +39,7 @@ class UserModelTest(unittest.TestCase):
     def test_register_user(self):
         response = self.app.post('/register', data={
             'username': 'testuser',
+            'name': 'TestName',
             'surname': 'testsurname',
             'email': 'test@example.com',
             'email2': 'test@example.com',
